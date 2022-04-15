@@ -1,0 +1,23 @@
+.type-button {
+    border-radius: 20px;
+    border-color: bisque;
+    border-width: 3px;
+    color: brown;
+    width: 120px;
+    font-family: 'Courier New', Courier, monospace;
+    margin-left: 185px;
+    }
+
+.type-button-selected {
+    border-radius: 20px;
+    border-color: brown;
+    border-width: 3px;
+    color: brown;
+    width: 120px;
+    font-family: 'Courier New', Courier, monospace;
+    margin-left: 185px;
+}
+
+.big-padding {
+    padding-bottom: 150px;
+}

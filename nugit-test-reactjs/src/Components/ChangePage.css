@@ -1,0 +1,15 @@
+.change-pages-buttons {
+    width: 220px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 10px;
+}
+
+.change-page {
+    border-radius: 20px;
+    border-color: bisque;
+    border-width: 3px;
+    color: brown;
+    width: 100px;
+    font-family: 'Courier New', Courier, monospace;
+}
