@@ -7,7 +7,7 @@ import "./Results.css"
 function Results(props) {
 
     return (
-        <div>
+        <div className="results">
             {props.results.map((item) => {
                 // the data shown changes with the type of the results considered
                 if (props.searchType === 'repositories') {

@@ -6,6 +6,7 @@ function App() {
     <div className='container-page'>
       <h1 className='page-title'> My Search Engine </h1>
       <Search />
+      <div className="big-padding"></div>
     </div>
   );
 }

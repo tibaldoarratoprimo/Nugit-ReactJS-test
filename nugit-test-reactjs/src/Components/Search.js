@@ -7,7 +7,7 @@ import Results from "./Results.js";
 import Tests from "./Tests.js";
 import $ from "jquery";
 
-function Search2() {
+function Search() {
 
     const [query, setQuery] = useState(''); // it represents the data given by the user in the search input
     const [pageNumber, setPageNumber] = useState(1) // given 30 results are shown on one page, the user needs to be able to change the page number
@@ -35,6 +35,12 @@ function Search2() {
         }
     }, [url]); // everytime the url is modified, results is updated so that the data shown on screen is modified
 
+    useEffect(() => { // no language must be requested when topics is chosen
+        if (searchType === 'topics') {
+            setLanguagesQuery('')
+        }
+    });
+
     useEffect(() => {setUrl('https://api.github.com/search/' + searchType + '?page=1&q=' + query + languagesQuery); setPageNumber(1)}, [query, searchType, languagesQuery]);
     // everytime a parameter (except for pageNumber) is modified, the url is updated and pageNumber comes back to 1
     
@@ -52,23 +58,29 @@ function Search2() {
             </div>
             <ChangePage pageNumber={pageNumber} numberOfResults={numberOfResults} setPageNumber={setPageNumber}/>
             <div className="types-and-languages">
-                <h4 className="types-column-title">
-                    Type
-                </h4>
-                <ChangeSearchType searchType={searchType} setSearchType={setSearchType}/>
-                {searchType == 'topics' // topics and languages can be in a same query
-                    ? <div></div>
-                    : <div>
-                        <h4 className="languages-column-title">
-                            Language
-                        </h4>
-                        <ChangeLanguage languagesQuery={languagesQuery} setLanguagesQuery={setLanguagesQuery}/>
+                <div className="types">
+                    <div>
+                        <h4 className="types-column-title">
+                            Type
+                        </h4>             
+                        <ChangeSearchType searchType={searchType} setSearchType={setSearchType}/>
                     </div>
-                }
+                </div>
+                <div className="languages">
+                    {searchType == 'topics' // topics and languages can be in a same query
+                        ? <div></div>
+                        : <div>
+                            <h4 className="languages-column-title">
+                                Language
+                            </h4>
+                            <ChangeLanguage languagesQuery={languagesQuery} setLanguagesQuery={setLanguagesQuery}/>
+                        </div>
+                    }
+                </div>
                 </div>
             <Results searchType={searchType} results={results}/>   
         </div>
     );
 }
 
-export default Search2;
+export default Search;

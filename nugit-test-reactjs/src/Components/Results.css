@@ -1,6 +1,12 @@
+.results {
+    column-count: 3;
+}
+
 .results-container {
-    border: 2px brown solid;
+    flex: auto;
+    border: 5px brown double;
     background-color: burlywood;
+    break-inside: avoid;
 }
 
 .small-padding {
@@ -8,6 +14,9 @@
 }
 
 .repo-name {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    clear: both;
     color: brown;
     font-family: Arial, Helvetica, sans-serif;
     font-style: bold;

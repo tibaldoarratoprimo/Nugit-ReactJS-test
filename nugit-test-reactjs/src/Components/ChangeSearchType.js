@@ -33,7 +33,6 @@ function ChangeSearchType(props) {
                             </div>
                         )}
             })}
-            <div className="big-padding"></div>
         </div>
     )
 }
