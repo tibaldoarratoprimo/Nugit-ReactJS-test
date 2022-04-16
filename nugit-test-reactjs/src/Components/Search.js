@@ -26,7 +26,6 @@ function Search2() {
         $.get(url, function(response) {
             setResults(response['items']);
             setNumberOfResults(response['total_count']);
-            console.log(response['items'][0])
         })
     };
 
@@ -36,10 +35,10 @@ function Search2() {
         }
     }, [url]); // everytime the url is modified, results is updated so that the data shown on screen is modified
 
-    useEffect(() => {setUrl('https://api.github.com/search/' + searchType + '?page=1&q=' + query + languagesQuery); setPageNumber(1); console.log(url)}, [query, searchType, languagesQuery]);
+    useEffect(() => {setUrl('https://api.github.com/search/' + searchType + '?page=1&q=' + query + languagesQuery); setPageNumber(1)}, [query, searchType, languagesQuery]);
     // everytime a parameter (except for pageNumber) is modified, the url is updated and pageNumber comes back to 1
     
-    useEffect(() => {setUrl('https://api.github.com/search/' + searchType + '?page=' + pageNumber + '&q=' + query + languagesQuery); console.log(url)}, [pageNumber]);
+    useEffect(() => {setUrl('https://api.github.com/search/' + searchType + '?page=' + pageNumber + '&q=' + query + languagesQuery)}, [pageNumber]);
 
     return (
         <div className="search-page">
