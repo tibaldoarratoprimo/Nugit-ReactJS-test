@@ -8,11 +8,11 @@ function Results(props) {
 
     return (
         <div className="results">
-            {props.results.map((item) => {
+            {props.results.map((item, index) => {
                 // the data shown changes with the type of the results considered
                 if (props.searchType === 'repositories') {
                     return (
-                        <div>
+                        <div key={index}>
                             <div className="results-container">
                                 <p className="repo-name"> {item['owner']['login']}/{item['name']} </p>
                                 <p className="description"> {item['description']} </p>
@@ -22,7 +22,7 @@ function Results(props) {
                         </div>
                     )} else if (props.searchType === 'topics') {
                         return (
-                            <div>
+                            <div key={index}>
                                 <div className="results-container">
                                     <p className="repo-name"> {item['name']} </p>
                                     <p className="description"> {item['description']} </p>
@@ -33,7 +33,7 @@ function Results(props) {
                         )
                     } else if (props.searchType === 'issues') {
                         return (
-                            <div>
+                            <div key={index}>
                                 <div className="results-container">
                                     <p className="repo-name"> {item['title']} </p>
                                     <p className="date"> {item['state']} / {item['created_at'].slice(0,10)} </p>
@@ -43,7 +43,7 @@ function Results(props) {
                         )
                     } else if (props.searchType === 'commits') {
                         return (
-                            <div>
+                            <div key={index}>
                                 <div className="results-container">
                                     <p className="repo-name"> {item['url']} </p>
                                     {/* I display commit url here because I cannot access the commit message for some reason*/}

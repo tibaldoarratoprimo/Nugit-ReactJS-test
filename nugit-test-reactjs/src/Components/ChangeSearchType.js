@@ -11,11 +11,11 @@ function ChangeSearchType(props) {
 
     return (
         <div>
-            {types.map((type) => { 
+            {types.map((type, index) => { 
                 // the selected button is different from the others
                 if (props.searchType === type) {
                     return (
-                        <div>
+                        <div key={index}>
                             <button 
                                 className="type-button-selected"
                                 onClick={(() => props.setSearchType(type))}>
@@ -24,7 +24,7 @@ function ChangeSearchType(props) {
                         </div>
                     )} else {
                         return (
-                            <div>
+                            <div key={index}>
                                 <button 
                                     className="type-button"
                                     onClick={(() => props.setSearchType(type))}>

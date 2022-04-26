@@ -3,7 +3,7 @@
  * The user can choose several languages at the same time (OR function).
  */
 
-function ChangeLanguage2(props) {
+function ChangeLanguage(props) {
 
     const languages = ['any', 'python', 'javascript', 'html', 'css', 'php', 'c', 'java'];
 
@@ -18,8 +18,8 @@ function ChangeLanguage2(props) {
 
     return (
         <div>
-            {languages.map((language) => 
-                <div>
+            {languages.map((language, index) => 
+                <div key={index}>
                     <button 
                         className="type-button"
                         onClick={(() => selectYourLanguage(language))}>
@@ -31,4 +31,4 @@ function ChangeLanguage2(props) {
     )
 }
 
-export default ChangeLanguage2;
+export default ChangeLanguage;

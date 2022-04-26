@@ -67,7 +67,7 @@ function Search() {
                     </div>
                 </div>
                 <div className="languages">
-                    {searchType == 'topics' // topics and languages can be in a same query
+                    {searchType == 'topics' // topics and languages cannot be in a same query
                         ? <div></div>
                         : <div>
                             <h4 className="languages-column-title">
