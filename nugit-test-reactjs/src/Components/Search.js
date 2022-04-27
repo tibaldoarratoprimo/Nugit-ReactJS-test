@@ -6,6 +6,7 @@ import ChangeSearchType from "./ChangeSearchType";
 import Results from "./Results.js";
 import Tests from "./Tests.js";
 import $ from "jquery";
+import wordsList from "./WordsList.js";
 
 function Search() {
 
@@ -13,20 +14,33 @@ function Search() {
     const [pageNumber, setPageNumber] = useState(1) // given 30 results are shown on one page, the user needs to be able to change the page number
     const [searchType, setSearchType] = useState('repositories'); // if the user doesn't modify it, type values 'repositories' initially
     const [numberOfResults, setNumberOfResults] = useState(0); // it enables no to request a page that doesn't exist
+    const [APIRateLimit, setAPIRateLimit] = useState(false);
     const [results, setResults] = useState([]); // results is a JSON object comprising the data got with the request
     const [languagesQuery, setLanguagesQuery] = useState(''); // languagesQuery (linked with the languages chosen by the user) is the exact str to add in the request
     const [url, setUrl] = useState('');
 
 
     function handleChange(event) {
-        setQuery(event.target.value)
+        setQuery(event.target.value);
     };
 
     async function goToURL() {
-        $.get(url, function(response) {
-            setResults(response['items']);
-            setNumberOfResults(response['total_count']);
-        })
+        $.ajax({
+            type: 'GET',
+            url,
+            statusCode: {
+                200: function(response) {
+                    setResults(response['items']);
+                    setNumberOfResults(response['total_count']);
+                    setAPIRateLimit(false);
+                },
+                403: function() {
+                    alert('API rate limit is exceeded');
+                    setAPIRateLimit(true);
+                }
+            }
+        }
+        )
     };
 
     useEffect(() => {
@@ -78,7 +92,12 @@ function Search() {
                     }
                 </div>
                 </div>
-            <Results searchType={searchType} results={results}/>   
+            {APIRateLimit 
+                ? <div>
+                    <p className="rate-limit-exceededs"> API rate limit exceeded : please try again in a few seconds</p>
+                </div>
+                : <Results searchType={searchType} results={results}/> 
+            }
         </div>
     );
 }
